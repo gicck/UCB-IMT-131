@@ -58,7 +58,7 @@ Principales ejes temáticos trabajados en la asignatura:
 - Curiosidad por distintos algoritmos y librerías.
 
 ## Unidades de aprendizaje
-1. Sistemas Operativos Linux y ShellScript  
+1. Sistemas Operativos Linux y ShellScript - **[Apuntes](./Sistemas%20Operativos%20Linux%20y%20ShellScript/apuntes.md)**
 2. Programación Orientada a Objetos en Python
 3. Encapsulamiento y Clases
 4. Herencia
@@ -110,3 +110,10 @@ La Inteligencia Artificial (IA) es una herramienta de apoyo que puede potenciar 
 4. **Combinar** la IA con investigación en documentación oficial y libros de referencia.  
 
 El objetivo es que la IA sea un **asistente de aprendizaje**, no un sustituto del esfuerzo y la creatividad del estudiante.
+
+-----------------------
+
+
+
+
+
