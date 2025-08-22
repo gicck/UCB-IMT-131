@@ -1,7 +1,7 @@
 ## Actividad 1 — Respaldo automático de proyectos
 
 Escenario:
-Un ingeniero de software debe mantener respaldos de su proyecto. Cada vez que ejecuta el script, se debe crear una copia comprimida con fecha y hora.
+Un ingeniero debe mantener respaldos de su proyecto. Cada vez que ejecuta el script, se debe crear una copia comprimida con fecha y hora.
 
 Tareas:
 
