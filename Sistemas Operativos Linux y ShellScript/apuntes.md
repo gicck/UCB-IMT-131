@@ -71,3 +71,37 @@ proyecto_mecatronica/
 └── evaluar.sh
 ```
  
+# Jueves 21/08 - Viernes 22/08
+
+- [Shell Command Language](https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html#tag_02)
+- [Bash Features](https://www.gnu.org/software/bash/manual/bash.html#Positional-Parameters)
+
+**Bash: (Bourne SHELL -> BASH)** Command Language Interpreter tambien conocido como SHELL.
+
+![alt text](./os.png)
+Al correr un commmando este es interpretado por SHELL para despues ser ejecutado en el sistema operativo (OS).
+
+`which $SHELL` -> para ver que SHELL se utiliza "BASH, ZSH, etc".
+
+e.j.
+
+### script1.sh
+
+```bash
+#!/bin/zsh
+echo "my first script"
+
+GREET="HOLA PROGRA"
+
+echo $GREET
+```
+
+### Mas comandos:   
+
+- `whatis` -> obtiene informacion a cerca de los comandos.
+- `wget` -> descargar archivos de una red (intenet).
+- `curl > namefile` -> obtener datos a traves de differentes protocolos (HTTP, FTP)
+- Pipe operator: ejemplo
+  - `ifconfig | grep en0 -A 6 | grep inet | awk '{print $2}'`
+- `ps` - procesos por usuario
+- `top` - analiza el rendimiento del sistema y sus customizaciones.

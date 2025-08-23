@@ -1,6 +1,6 @@
 # Tarea 1
 
-A partir de las consignas de `generar_paquete.sh`
+A partir de las consignas de [generar_paquete.sh](./generar_paquete.sh)
 Entregar las actividades de la siguiente manera
 
 ref: [BASH Positional-Parameters](https://www.gnu.org/software/bash/manual/bash.html#Positional-Parameters)
