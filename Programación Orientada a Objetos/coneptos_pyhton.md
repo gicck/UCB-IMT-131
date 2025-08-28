@@ -2,7 +2,7 @@
 ## Py files
 ## Variables
 
-```pyhton
+```py
 name = 'Bob'
 age = 20
 
@@ -12,7 +12,7 @@ print('Hello my name is:', name)
 
 ## Basic Data Types 
 
-```python
+```py
 number: int = 10
 decimal : float = 2.5
 text: str = 'Hello, world!'
@@ -27,7 +27,7 @@ data: dict = {'name': 'Bob', 'age': 21}
 
 ## Type Anotations
 
-```python
+```py
 name = 'Bob'
 name: str = 'Bob'
 
@@ -36,7 +36,7 @@ age: int = 'Eleven'
 ```
 
 ## Constants
-```python
+```py
 from typing import Final
 
 VERSION: Final[str] = '1.0.13'
