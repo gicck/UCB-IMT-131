@@ -1,75 +1,70 @@
 ## Lunes 25/08
-
 ### Python Roadmap
-## Core Python
-### Variables, data types, lists, dictionaries, tuples
-### Operators
-#### Conditional operators, arithmetic operators, type conversions
-### Conditional statements
-#### if, like, elif
-### for loops, while loops
-### Mutability
-### Fuctions
-### Clases
-### Objects
-### Methods
+**Core Python**
+- Variables, data types, lists, dictionaries, tuples
+- Operators
+-  Conditional operators, arithmetic operators, type conversions
+- Conditional statements
+    -  if, like, elif
+- for loops, while loops
+- Mutability
+- Fuctions
+- Clases
+- Objects
+- Methods
 
-## Small Projects / practice OOP
-### How to Split code into multiple files
-#### Packages, modules
-### How to Write reusable calsses and functions
-### How to save and load data from files(basic data persistance)
-### Quiza app, inventoriy tracker
-#### Work on digestable topics
+**Small Projects / practice OOP**
+- How to Split code into multiple files
+    - Packages, modules
+- How to Write reusable calsses and functions
+- How to save and load data from files(basic data persistance)
+- Quiza app, inventoriy tracker
+    - Work on digestable topics
 
-## Learn real developer tools
-### Git + github
-### Virtual environments
-#### VENV, Conda, UV
-### Debugging tools
-#### print, logging, pdb
-### pip
-#### install various different packages
-#### how does this fit with virtual environments
-### requirements.txt
-### Python modules, imports, python ecosystem
-### Terminal Fluency -> cd, rm, cp, etc 
+**Learn real developer tools**
+- Git + github
+- Virtual environments
+    - VENV, Conda, UV
+- Debugging tools
+    - print, logging, pdb
+- pip
+    - install various different packages
+    - how does this fit with virtual environments
+- requirements.txt
+- Python modules, imports, python ecosystem
+- Terminal Fluency -> cd, rm, cp, etc 
 
-## Pick a track and build something real
-### WEBDEV
-#### Flask, FastAPI, Django
-### Data analysis
-#### Pandas, NumPy, Matplotlib
-### Automation
-#### Write basic scripts
-#### Selenium
-#### Playwright
-#### Puppeteer
-#### Web berowser automation
-### APIs
-#### Request, JSON, external services
-### AI/LLMS
-#### LangChain, LAngflow, Ollama, Transformers, HuggingFace
+**Pick a track and build something real**
+- WEBDEV
+    - Flask, FastAPI, Django
+- Data analysis
+    - Pandas, NumPy, Matplotlib
+- Automation
+    - Write basic scripts
+    - Selenium
+    - Playwright
+    - Puppeteer
+    - Web berowser automation
+- APIs
+    - Request, JSON, external services
+- AI/LLMS
+    - LangChain, LAngflow, Ollama, Transformers, HuggingFace
 
-## Become Pythonic
-### List comprenhensions
-### generator expressions
-### with statemetns(context managers)
-### Decorators
-### *args, **kwargs
-### type hints
-### docstrings
+**Become Pythonic**
+- List comprenhensions
+- generator expressions
+- with statemetns(context managers)
+- Decorators
+- *args, **kwargs
+- type hints
+- docstrings
 
-## Advance Concepts
-### Threading/Multiprocessing
-### AsyncIO
-### Global Interpreter Lock
-### Python Versions
-### CPython vs PyPy vs MicroPython 
-
----
-
-## Jueves 8/28
+**Advance Concepts**
+- Threading/Multiprocessing
+- AsyncIO
+- Global Interpreter Lock
+- Python Versions
+- CPython vs PyPy vs MicroPython 
 
 
 # Ejercicios de Práctica de Abstracción en Python (OOP)
@@ -236,3 +231,134 @@ def add_product(name, qty, price, category):
 6. Sigue **PEP 8** para un código limpio  
 
 ---
+
+
+## Lunes 01/09
+
+### Resolucion Ejercicio 1
+
+#### Programacion Secuencial
+```py
+# Global lists
+# "Gonzalo Account", "Bonny Account"
+account_holders = []
+# 100.2, 122.3, 100.2
+balances = []
+# 11222, 12223, 12224
+account_numbers = []
+
+def create_account(name, initial_balance, account_number):
+    # Add to lists
+    account_holders.append(name)
+    balances.append(initial_balance)
+    account_numbers.append(account_number)
+
+def find_account_index(account_number):
+    # Loop through list to find account
+    for i in range(len(account_numbers)):
+        if account_numbers[i] == account_number:
+            return i
+    return -1    
+
+def deposit(account_number, amount):
+    # Find account in list, update balance
+    index = find_account_index(account_number)
+
+    balances[index] += amount
+    return True
+
+def withdraw(account_number, amount):
+    index = find_account_index(account_number)
+
+    balances[index] -= amount
+    return True
+
+def check_balance(account_number):
+    index = find_account_index(account_number)
+    return balances[index] 
+
+def main():
+    create_account("GonzaloAccount", 20, 122)
+    create_account("AlexAccount", 20, 123)
+
+    deposit(122, 200.2)
+    deposit(123, 200.2)
+
+    print(f"El balance de 122 es: {check_balance(122)}")
+    print(f"El balance de 123 es: {check_balance(123)}")
+
+    withdraw(123, 100)
+
+    print(f"El balance de 123 es: {check_balance(123)}")
+
+
+
+if __name__ == "__main__":
+    main()
+```
+#### Programacion Orientada Objetos
+
+```py
+class BankAccount:
+    def __init__(self, id: int, name: str, initial_ammount: float) -> None:
+        self._id = id
+        self._name = name
+        self._balance = initial_ammount
+
+    def get_id(self)-> int:
+        return self._id
+
+    def get_balance(self)-> float:
+        return self._balance
+    
+    def deposit(self, amount: float)-> bool:
+        self._balance += amount
+        return True
+  
+    def withdraw(self, amount: float)-> bool:
+        self._balance -= amount
+        return True
+
+class BankSystem:
+    def __init__(self) -> None:
+        self._accounts: list[BankAccount] = []
+
+    def create_account(self, bank_account: BankAccount) -> None:
+        self._accounts.append(bank_account)
+
+    def find_account(self, id: int) -> BankAccount | None:
+        for account in self._accounts:
+            if account.get_id() == id:
+                return account
+        return None
+
+def main():
+
+    gonzalo_account: BankAccount = BankAccount(122, "Gonzalo Account", 32.2)
+    # print(f"El balance de 122 es: {gonzalo_account.get_balance()}")
+
+    # gonzalo_account.deposit(233)
+    ucb_bank: BankSystem = BankSystem()
+    ucb_bank.create_account(gonzalo_account)
+
+    found_account = ucb_bank.find_account(1220000)
+
+    if  found_account == None:
+        print("la cuenta no existe")
+    else:
+        print(found_account.get_balance())
+    # create_account("GonzaloAccount", 20, 122)
+    # create_account("AlexAccount", 20, 123)
+
+    # deposit(122, 200.2)
+    # deposit(123, 200.2)
+
+    # print(f"El balance de 123 es: {check_balance(123)}")
+
+    # withdraw(123, 100)
+
+    # print(f"El balance de 123 es: {check_balance(123)}")
+
+if __name__ == "__main__":
+    main()
+```
