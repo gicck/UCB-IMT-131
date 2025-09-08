@@ -362,3 +362,62 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+### Semana 6
+
+## Encapsulamiento
+
+- El encapsulamiento agrupa datos (atributos) y comportamiento (métodos) dentro de una clase y controla su acceso.
+- Esto ayuda a separar la lógica de e.j. sensores/actuadores del control de alto nivel.
+
+Objetivos
+- Proteger estados internos de sensores y actuadores.
+- Diseñar interfaces públicas (comandos seguros) y mantener invariantes (limites físicos).
+- Crear propiedades con validación (por ejemplo límites de velocidad, rangos de sensor).
+
+Caso de estudio `SensorIMU` que procese lecturas crudas de acelerómetro y giroscopio. Proponer métodos públicos para obtener ángulos filtrados y privados para aplicar calibración y filtrado. Especificar qué datos se almacenan internamente y cómo se valida la calibración.
+https://www.mathworks.com/help/nav/ug/introduction-to-simulating-imu-measurements.html
+https://github.com/niru-5/imusensor?tab=readme-ov-file
+
+
+### Ejercicios 
+1. Diseñar una clase `MotorController` para un motor DC que exponga métodos públicos `set_speed(valor)` y `stop()`. Indicar qué atributos deben ser privados (p. ej. PWM, dirección, estado de emergencia) y las validaciones necesarias (velocidad dentro de rango, bloqueo por emergencia).
+
+2. Caso de estudio: `BateriaRobot` con monitoreo de voltaje y corriente. Plantear una interfaz pública para consultar estado y métodos privados para calcular carga restante. Definir reglas para evitar lecturas falsas o acciones peligrosas (por ejemplo, desactivar actuadores si el voltaje es crítico).
+
+3. Mini-ejercicio de refactorización: Dado código donde múltiples módulos acceden y modifican directamente los límites de velocidad de los motores, describir los pasos para encapsular esa lógica dentro de `MotorController` y proporcionar una transición segura para el código cliente (adaptadores, métodos de compatibilidad).
+
+```py
+# Código inicial problemático - NO HACER ESTO
+class Motor:
+    def __init__(self, id_motor):
+        self.id = id_motor
+        self.velocidad_maxima = 100  # RPM
+        self.velocidad_minima = -100  # RPM
+        self.velocidad_actual = 0
+        self.pwm_value = 0
+        self.direccion = "forward"
+        self.emergencia_activa = False
+
+# Módulos que usan directamente los atributos del motor
+class ModuloNavegacion:
+    def mover_adelante(self, motor_izq, motor_der):
+        # ¡PROBLEMA! Acceso directo sin validación
+        motor_izq.velocidad_actual = 80
+        motor_der.velocidad_actual = 80
+        motor_izq.pwm_value = 80
+        motor_der.pwm_value = 80
+
+class ModuloEmergencia:
+    def detener_todo(self, motores):
+        for motor in motores:
+            # ¡PROBLEMA! Modifica estado interno directamente
+            motor.emergencia_activa = True
+            motor.velocidad_actual = 0
+
+class ModuloTeleoperacion:
+    def controlar_manual(self, motor, velocidad_joystick):
+        # ¡PROBLEMA! No valida límites
+        motor.velocidad_actual = velocidad_joystick * 150  # Puede exceder límites!
+        motor.pwm_value = abs(velocidad_joystick * 150)
+```
