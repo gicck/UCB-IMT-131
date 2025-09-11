@@ -363,7 +363,7 @@ if __name__ == "__main__":
     main()
 ```
 
-### Semana 6
+## Semana 6
 
 ## Encapsulamiento
 
@@ -371,16 +371,18 @@ if __name__ == "__main__":
 - Esto ayuda a separar la lógica de e.j. sensores/actuadores del control de alto nivel.
 
 Objetivos
+
 - Proteger estados internos de sensores y actuadores.
 - Diseñar interfaces públicas (comandos seguros) y mantener invariantes (limites físicos).
 - Crear propiedades con validación (por ejemplo límites de velocidad, rangos de sensor).
 
 Caso de estudio `SensorIMU` que procese lecturas crudas de acelerómetro y giroscopio. Proponer métodos públicos para obtener ángulos filtrados y privados para aplicar calibración y filtrado. Especificar qué datos se almacenan internamente y cómo se valida la calibración.
-https://www.mathworks.com/help/nav/ug/introduction-to-simulating-imu-measurements.html
-https://github.com/niru-5/imusensor?tab=readme-ov-file
 
+- https://www.mathworks.com/help/nav/ug/introduction-to-simulating-imu-measurements.html
+- https://github.com/niru-5/imusensor?tab=readme-ov-file
 
-### Ejercicios 
+### Ejercicios
+
 1. Diseñar una clase `MotorController` para un motor DC que exponga métodos públicos `set_speed(valor)` y `stop()`. Indicar qué atributos deben ser privados (p. ej. PWM, dirección, estado de emergencia) y las validaciones necesarias (velocidad dentro de rango, bloqueo por emergencia).
 
 2. Caso de estudio: `BateriaRobot` con monitoreo de voltaje y corriente. Plantear una interfaz pública para consultar estado y métodos privados para calcular carga restante. Definir reglas para evitar lecturas falsas o acciones peligrosas (por ejemplo, desactivar actuadores si el voltaje es crítico).
