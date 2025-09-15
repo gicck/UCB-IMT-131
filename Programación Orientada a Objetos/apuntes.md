@@ -363,7 +363,7 @@ if __name__ == "__main__":
     main()
 ```
 
-## Semana 6
+# Semana 6
 
 ## Encapsulamiento
 
@@ -423,3 +423,6 @@ class ModuloTeleoperacion:
         motor.velocidad_actual = velocidad_joystick * 150  # Puede exceder límites!
         motor.pwm_value = abs(velocidad_joystick * 150)
 ```
+
+# Semana 7
+
